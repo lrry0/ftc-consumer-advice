@@ -113,8 +113,8 @@ export default function ConsumerAdviceHome({ onOpenArticle, onNavigate }: Consum
         className="w-full relative bg-slate-900 text-white min-h-[440px] flex items-center bg-cover bg-center"
         style={{ backgroundImage: `url(${creditReportHeroBg})` }}
       >
-        {/* Left Side Diagonal Blue Gradient Overlay (20% transparency for 60% split, 95% transparency for 40% split) */}
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(27,54,93,0.8)_0%,rgba(27,54,93,0.8)_60%,rgba(27,54,93,0.05)_100%)] z-10" />
+        {/* Left Side Diagonal Blue Gradient Overlay (98% opacity for 60% split, 95% transparency for 40% split) */}
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(27,54,93,0.98)_0%,rgba(27,54,93,0.98)_60%,rgba(27,54,93,0.05)_100%)] z-10" />
 
         <div className="max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-20 w-full">
           {/* Left Text Column */}
@@ -144,18 +144,12 @@ export default function ConsumerAdviceHome({ onOpenArticle, onNavigate }: Consum
           <p className="text-base font-serif font-medium leading-relaxed">
             The FTC will never demand money, make threats, tell you to transfer money, or promise you a prize. If you have been targeted by an illegal business practice or scam, report it.
           </p>
-          <div className="pt-4 space-y-2">
+          <div className="pt-4">
             <button 
               onClick={() => setIsReportModalOpen(true)}
               className="px-6 py-3 bg-[#111827] hover:bg-black text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer rounded-xs w-full text-center"
             >
               Report to the FTC
-            </button>
-            <button 
-              onClick={() => onNavigate("/advice-and-guidance/report/77391024/norton-consumer-investigation")}
-              className="text-center text-xs font-bold text-[#ffbe2e] hover:underline cursor-pointer block w-full"
-            >
-              View Consumer Registry Record #77391024
             </button>
           </div>
         </div>
@@ -167,18 +161,12 @@ export default function ConsumerAdviceHome({ onOpenArticle, onNavigate }: Consum
           <p className="text-sm font-serif font-medium leading-relaxed">
             The FTC will never demand money, make threats, tell you to transfer money, or promise you a prize. If you have been targeted by an illegal business practice or scam, report it.
           </p>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col">
             <button 
               onClick={() => setIsReportModalOpen(true)}
               className="px-6 py-2.5 bg-[#111827] hover:bg-black text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer rounded-xs"
             >
               Report to the FTC
-            </button>
-            <button 
-              onClick={() => onNavigate("/advice-and-guidance/report/77391024/norton-consumer-investigation")}
-              className="text-center text-xs font-bold text-[#ffbe2e] hover:underline cursor-pointer block"
-            >
-              View Consumer Registry Record #77391024
             </button>
           </div>
         </div>
