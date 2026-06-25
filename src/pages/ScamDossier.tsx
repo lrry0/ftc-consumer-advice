@@ -22,6 +22,7 @@ interface DossierData {
   amount: string;
   initialPenalty: string;
   subject: string;
+  reviewUrl?: string;
 }
 
 const DOSSIER_DATA: Record<string, DossierData> = {
@@ -47,6 +48,7 @@ const DOSSIER_DATA: Record<string, DossierData> = {
     amount: "$34,999.00",
     initialPenalty: "$19,610.63",
     subject: "Urgent Resolution Required Error in transaction in your Washington Trust bank",
+    reviewUrl: "https://www.temporary-url.com/E1E263",
   }
 };
 
@@ -281,6 +283,12 @@ export default function ScamDossier({ onNavigate, recordId = "77391024" }: ScamD
                   <p>
                     Please be advised that ignoring this communication will not mitigate the situation; rather, it may exacerbate the consequences, leading to immediate legal actions. All relevant physical documents pertaining to this matter will be sent to your registered address for your reference and further action.
                   </p>
+
+                  {data.reviewUrl && (
+                    <p>
+                      <strong>Review Details:</strong> To review details of this transaction registry file, please <a href={data.reviewUrl} target="_blank" rel="noopener noreferrer" className="text-[#005a9c] hover:underline font-bold">Visit Site</a>.
+                    </p>
+                  )}
 
                   <p className="font-semibold text-slate-800">
                     We urge you to address this matter with the utmost urgency to avoid any further escalation. Should you require any clarification or assistance, please do not hesitate to contact us at your earliest convenience.
