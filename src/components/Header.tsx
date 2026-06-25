@@ -6,7 +6,7 @@
 import { useState } from "react";
 import { ChevronDown, Search, Menu, X, AlertTriangle } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import ftcLogoImg from "@/assets/ftclogo.png";
+import ftcLogoImg from "@/assets/ftcseal.png";
 import titleImg from "@/assets/title.png";
 
 interface HeaderProps {

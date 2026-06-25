@@ -4,7 +4,7 @@
  */
 
 import { Facebook, Twitter, Linkedin, Youtube, Rss, ArrowUp, Globe } from "lucide-react";
-import ftcLogoImg from "@/assets/ftclogo.png";
+import ftcLogoImg from "@/assets/ftcseal.png";
 
 interface FooterProps {
   onNavigate: (page: "scams" | "home") => void;
