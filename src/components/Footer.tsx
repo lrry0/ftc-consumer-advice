@@ -7,7 +7,7 @@ import { Facebook, Twitter, Linkedin, Youtube, Rss, ArrowUp, Globe } from "lucid
 import ftcLogoImg from "@/assets/ftcseal.png";
 
 interface FooterProps {
-  onNavigate: (page: "scams" | "home") => void;
+  onNavigate: (path: string) => void;
 }
 
 export default function Footer({ onNavigate }: FooterProps) {

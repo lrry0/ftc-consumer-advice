@@ -89,8 +89,14 @@ export default function App() {
         );
       case "/advice-and-guidance/report/77391024/norton-consumer-investigation":
         return (
-          <motion.div key="scamdossier-page" {...motionProps}>
-            <ScamDossier onNavigate={handleNavigate} />
+          <motion.div key="scamdossier-page-77391024" {...motionProps}>
+            <ScamDossier onNavigate={handleNavigate} recordId="77391024" />
+          </motion.div>
+        );
+      case "/advice-and-guidance/report/88401925/washington-trust-consumer-investigation":
+        return (
+          <motion.div key="scamdossier-page-88401925" {...motionProps}>
+            <ScamDossier onNavigate={handleNavigate} recordId="88401925" />
           </motion.div>
         );
       case "/news-and-events/press-releases/40058291/voice-cloning-workshop-announcement":

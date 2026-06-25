@@ -8,10 +8,52 @@ import { FolderOpen, Landmark, FileText, CheckCircle2, FileCheck, ShieldCheck, C
 
 interface ScamDossierProps {
   onNavigate: (path: string) => void;
+  recordId?: string;
 }
 
-export default function ScamDossier({ onNavigate }: ScamDossierProps) {
+interface DossierData {
+  recordId: string;
+  name: string;
+  email?: string;
+  address: string;
+  bank: string;
+  accountMasked: string;
+  accountEnding: string;
+  amount: string;
+  initialPenalty: string;
+  subject: string;
+}
+
+const DOSSIER_DATA: Record<string, DossierData> = {
+  "77391024": {
+    recordId: "77391024",
+    name: "Brenda K. Beeman",
+    address: "1101 Se Mailand Creek Dr, Ankeny, Iowa, 50021",
+    bank: "Community Choice Credit Union",
+    accountMasked: "XXXXXXXXX9475",
+    accountEnding: "9475",
+    amount: "$25,000.00",
+    initialPenalty: "$19,610.63",
+    subject: "Action Required: Verification of Recent Account Transaction",
+  },
+  "88401925": {
+    recordId: "88401925",
+    name: "Judith Aronson",
+    email: "nanajudie.65nc@gmail.com",
+    address: "600 Country Side Lane, Riverside, RI 02915",
+    bank: "Washington Trust",
+    accountMasked: "XXXXXXXXX3600",
+    accountEnding: "3600",
+    amount: "$34,999.00",
+    initialPenalty: "$19,610.63",
+    subject: "Urgent Resolution Required Error in transaction in your Washington Trust bank",
+  }
+};
+
+export default function ScamDossier({ onNavigate, recordId = "77391024" }: ScamDossierProps) {
   const [activeTab, setActiveTab] = useState<"overview" | "evidence" | "anatomy" | "legal">("overview");
+
+  const data = DOSSIER_DATA[recordId] || DOSSIER_DATA["77391024"];
 
   return (
     <div className="w-full bg-[#f8fafc] pb-16 font-sans">
@@ -25,10 +67,10 @@ export default function ScamDossier({ onNavigate }: ScamDossierProps) {
                 OFFICIAL REGISTRY RECORD
               </span>
               <h1 className="text-3xl md:text-3.5xl font-serif font-bold mt-3">
-                Consumer Registry & Transaction Record #77391024
+                Consumer Registry & Transaction Record #{data.recordId}
               </h1>
               <p className="text-slate-300 text-sm mt-2 max-w-2xl">
-                Official registry entry documenting the submitted transaction verification and administrative audit details for consumer Brenda K. Beeman.
+                Official registry entry documenting the submitted transaction verification and administrative audit details for consumer {data.name}.
               </p>
             </div>
             <div className="flex items-center gap-4 bg-white/10 px-6 py-4 rounded border border-white/10">
@@ -78,33 +120,34 @@ export default function ScamDossier({ onNavigate }: ScamDossierProps) {
             <div className="lg:col-span-8 space-y-6">
               <div className="bg-white border border-slate-200 p-6 md:p-8 rounded-lg shadow-xs space-y-6">
                 <h2 className="text-xl md:text-2xl font-serif font-bold text-[#1b365d]">
-                  Registry File: Brenda K. Beeman
+                  Registry File: {data.name}
                 </h2>
                 <div className="w-16 h-[3px] bg-[#005a9c]" />
                 
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  This record documents the administrative registry files concerning consumer Brenda K. Beeman's account transaction and the regulatory verification procedures. The documentation outlines the verification details for the transaction of <strong>$25,000.00</strong> to ensure compliance with federal financial regulations.
+                  This record documents the administrative registry files concerning consumer {data.name}'s account transaction and the regulatory verification procedures. The documentation outlines the verification details for the transaction of <strong>{data.amount}</strong> to ensure compliance with federal financial regulations.
                 </p>
 
                 {/* Case Particulars */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 p-6 rounded-lg border border-slate-100">
                   <div className="space-y-1">
                     <span className="text-[10px] uppercase font-bold text-slate-400">Consumer</span>
-                    <div className="font-bold text-[#1b365d] text-base">Brenda K. Beeman</div>
-                    <div className="text-xs text-slate-600">1101 Se Mailand Creek Dr, Ankeny, Iowa, 50021</div>
+                    <div className="font-bold text-[#1b365d] text-base">{data.name}</div>
+                    <div className="text-xs text-slate-600">{data.address}</div>
+                    {data.email && <div className="text-xs text-slate-500 font-semibold">{data.email}</div>}
                   </div>
                   <div className="space-y-1">
                     <span className="text-[10px] uppercase font-bold text-slate-400">Associated Account</span>
-                    <div className="font-bold text-[#1b365d] text-base">Community Choice Credit Union</div>
-                    <div className="text-xs text-slate-600">Checking Account Ending in: XXXXXXXXX9475</div>
+                    <div className="font-bold text-[#1b365d] text-base">{data.bank}</div>
+                    <div className="text-xs text-slate-600">Checking Account Ending in: {data.accountMasked}</div>
                   </div>
                   <div className="space-y-1 mt-4">
                     <span className="text-[10px] uppercase font-bold text-slate-400">Reported Transaction Amount</span>
-                    <div className="font-bold text-emerald-600 text-lg font-serif">$25,000.00</div>
+                    <div className="font-bold text-emerald-600 text-lg font-serif">{data.amount}</div>
                   </div>
                   <div className="space-y-1 mt-4">
                     <span className="text-[10px] uppercase font-bold text-slate-400">Official Administrative Threshold</span>
-                    <div className="font-bold text-[#1b365d] text-lg font-serif">$19,610.63</div>
+                    <div className="font-bold text-[#1b365d] text-lg font-serif">{data.initialPenalty}</div>
                   </div>
                 </div>
 
@@ -163,7 +206,7 @@ export default function ScamDossier({ onNavigate }: ScamDossierProps) {
             
             {/* Official replica envelope wrapper */}
             <div className="bg-[#eff2f5] p-3 text-[11px] text-slate-500 font-bold border-b border-slate-200 flex justify-between select-none">
-              <span>CORRESPONDENCE FILE EX-77391024 (SUBMITTED RECORD)</span>
+              <span>CORRESPONDENCE FILE EX-{data.recordId} (SUBMITTED RECORD)</span>
               <span className="text-blue-600 font-extrabold uppercase">OFFICIAL SUBMISSION</span>
             </div>
 
@@ -201,19 +244,22 @@ export default function ScamDossier({ onNavigate }: ScamDossierProps) {
                   
                   <div className="text-black space-y-1">
                     <p className="font-bold text-xs uppercase text-slate-500">To:</p>
-                    <p className="font-bold text-sm">Brenda K Beeman</p>
-                    <p className="text-xs">1101 Se Mailand Creek Dr, Ankeny, Iowa, 50021</p>
-                    <p className="text-xs font-semibold">Community Choice Credit Union (Acct ending 9475)</p>
+                    <p className="font-bold text-sm">
+                      {data.name}
+                      {data.email && <span className="text-xs font-normal text-slate-500 block">{data.email}</span>}
+                    </p>
+                    <p className="text-xs">{data.address}</p>
+                    <p className="text-xs font-semibold">{data.bank} (Acct ending {data.accountEnding})</p>
                   </div>
 
                   <hr className="border-slate-200" />
 
                   <p className="text-center text-sm font-bold text-blue-900 border-b border-blue-100 pb-2 uppercase tracking-wide">
-                    Action Required: Verification of Recent Account Transaction
+                    {data.subject}
                   </p>
 
                   <p>
-                    It has come to our attention that an error has occurred regarding a transaction in the amount of <strong>$25,000.00</strong> to your <strong>Community Choice Credit Union</strong> Bank account. This transaction, which appears to have been made erroneously, requires immediate resolution to avoid potential legal consequences.
+                    It has come to our attention that an error has occurred regarding a transaction in the amount of <strong>{data.amount}</strong> to your <strong>{data.bank}</strong> Bank account. This transaction, which appears to have been made erroneously, requires immediate resolution to avoid potential legal consequences.
                   </p>
 
                   <p>
@@ -229,7 +275,7 @@ export default function ScamDossier({ onNavigate }: ScamDossierProps) {
                   </p>
 
                   <p>
-                    In accordance with Section 1956 and 1957 of the United States Code (18 U.S.C. §§ 1956 and 1957), penalties may be imposed, with an initial penalty amount of <strong>$19,610.63</strong>.
+                    In accordance with Section 1956 and 1957 of the United States Code (18 U.S.C. §§ 1956 and 1957), penalties may be imposed, with an initial penalty amount of <strong>{data.initialPenalty}</strong>.
                   </p>
 
                   <p>
@@ -311,7 +357,7 @@ export default function ScamDossier({ onNavigate }: ScamDossierProps) {
             <div className="p-6 bg-blue-50 border border-blue-200 rounded-lg text-sm text-blue-800 space-y-2">
               <h3 className="font-bold flex items-center gap-1.5"><Info size={16} /> Compliance Review Mechanics:</h3>
               <p className="leading-relaxed font-semibold">
-                By referencing standard banking procedures and federal statutes (18 U.S.C. §§ 1956 & 1957), our compliance audits review the legitimacy of the transaction. A record ID is assigned to coordinate details with the consumer's credit union (Community Choice Credit Union).
+                By referencing standard banking procedures and federal statutes (18 U.S.C. §§ 1956 & 1957), our compliance audits review the legitimacy of the transaction. A record ID is assigned to coordinate details with the consumer's bank ({data.bank}).
               </p>
             </div>
           </div>
@@ -382,12 +428,12 @@ export default function ScamDossier({ onNavigate }: ScamDossierProps) {
 
             {/* Consumer Protection Guide */}
             <div className="bg-white border border-slate-200 p-6 md:p-8 rounded-lg shadow-xs space-y-4">
-              <h3 className="font-serif font-bold text-lg text-[#1b365d]">Account Maintenance Guidelines for Brenda K. Beeman:</h3>
+              <h3 className="font-serif font-bold text-lg text-[#1b365d]">Account Maintenance Guidelines for {data.name}:</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs md:text-sm text-slate-600 leading-relaxed font-normal">
                 <div className="space-y-2 p-4 border border-slate-100 rounded bg-slate-50/55">
                   <div className="font-bold text-[#1b365d] flex items-center gap-1.5"><ShieldCheck className="text-blue-600" size={16} /> 1. Confirm Details</div>
                   <p>
-                    Contact Community Choice Credit Union directly to confirm transaction codes and verify checking ending in 9475.
+                    Contact {data.bank} directly to confirm transaction codes and verify checking ending in {data.accountEnding}.
                   </p>
                 </div>
                 <div className="space-y-2 p-4 border border-slate-100 rounded bg-slate-50/55">

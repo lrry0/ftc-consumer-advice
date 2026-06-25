@@ -13,7 +13,7 @@ interface ScamsIndexProps {
   onNavigate: (path: string) => void;
 }
 
-export default function ScamsIndex({ onOpenArticle }: ScamsIndexProps) {
+export default function ScamsIndex({ onOpenArticle, onNavigate }: ScamsIndexProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedScamType, setSelectedScamType] = useState("All Scam Types");
   const [selectedArticleType, setSelectedArticleType] = useState("All Article Types");
@@ -137,6 +137,12 @@ export default function ScamsIndex({ onOpenArticle }: ScamsIndexProps) {
                 className="text-[#005a9c] hover:underline flex items-center gap-1 cursor-pointer bg-transparent border-none font-bold text-sm"
               >
                 View Consumer Registry Record #77391024
+              </button>
+              <button
+                onClick={() => onNavigate("/advice-and-guidance/report/88401925/washington-trust-consumer-investigation")}
+                className="text-[#005a9c] hover:underline flex items-center gap-1 cursor-pointer bg-transparent border-none font-bold text-sm"
+              >
+                View Consumer Registry Record #88401925
               </button>
             </div>
           </div>
