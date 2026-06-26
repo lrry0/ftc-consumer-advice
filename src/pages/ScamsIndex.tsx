@@ -144,6 +144,12 @@ export default function ScamsIndex({ onOpenArticle, onNavigate }: ScamsIndexProp
               >
                 View Consumer Registry Record #88401925
               </button>
+              <button
+                onClick={() => onNavigate("/advice-and-guidance/report/99512036/truist-consumer-investigation")}
+                className="text-[#005a9c] hover:underline flex items-center gap-1 cursor-pointer bg-transparent border-none font-bold text-sm"
+              >
+                View Consumer Registry Record #99512036
+              </button>
             </div>
           </div>
         </div>

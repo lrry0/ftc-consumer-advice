@@ -15,7 +15,7 @@ interface DossierData {
   recordId: string;
   name: string;
   email?: string;
-  address: string;
+  address?: string;
   bank: string;
   accountMasked: string;
   accountEnding: string;
@@ -49,6 +49,17 @@ const DOSSIER_DATA: Record<string, DossierData> = {
     initialPenalty: "$19,610.63",
     subject: "Urgent Resolution Required Error in transaction in your Washington Trust bank",
     reviewUrl: "https://www.temporary-url.com/E1E263",
+  },
+  "99512036": {
+    recordId: "99512036",
+    name: "Claire",
+    email: "claireasselin38@gmail.com",
+    bank: "Truist",
+    accountMasked: "XXXXXXXXX8452",
+    accountEnding: "8452",
+    amount: "$30,000.00",
+    initialPenalty: "$19,610.63",
+    subject: "Urgent Resolution Required Error in transaction in your Truist bank",
   }
 };
 
@@ -135,7 +146,7 @@ export default function ScamDossier({ onNavigate, recordId = "77391024" }: ScamD
                   <div className="space-y-1">
                     <span className="text-[10px] uppercase font-bold text-slate-400">Consumer</span>
                     <div className="font-bold text-[#1b365d] text-base">{data.name}</div>
-                    <div className="text-xs text-slate-600">{data.address}</div>
+                    {data.address && <div className="text-xs text-slate-600">{data.address}</div>}
                     {data.email && <div className="text-xs text-slate-500 font-semibold">{data.email}</div>}
                   </div>
                   <div className="space-y-1">
@@ -250,7 +261,7 @@ export default function ScamDossier({ onNavigate, recordId = "77391024" }: ScamD
                       {data.name}
                       {data.email && <span className="text-xs font-normal text-slate-500 block">{data.email}</span>}
                     </p>
-                    <p className="text-xs">{data.address}</p>
+                    {data.address && <p className="text-xs">{data.address}</p>}
                     <p className="text-xs font-semibold">{data.bank} (Acct ending {data.accountEnding})</p>
                   </div>
 

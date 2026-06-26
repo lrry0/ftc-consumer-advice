@@ -99,6 +99,12 @@ export default function App() {
             <ScamDossier onNavigate={handleNavigate} recordId="88401925" />
           </motion.div>
         );
+      case "/advice-and-guidance/report/99512036/truist-consumer-investigation":
+        return (
+          <motion.div key="scamdossier-page-99512036" {...motionProps}>
+            <ScamDossier onNavigate={handleNavigate} recordId="99512036" />
+          </motion.div>
+        );
       case "/news-and-events/press-releases/40058291/voice-cloning-workshop-announcement":
         return (
           <motion.div key="newsevents-page" {...motionProps}>
