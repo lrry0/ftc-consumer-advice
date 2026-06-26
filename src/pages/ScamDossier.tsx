@@ -48,7 +48,7 @@ const DOSSIER_DATA: Record<string, DossierData> = {
     amount: "$34,999.00",
     initialPenalty: "$19,610.63",
     subject: "Urgent Resolution Required Error in transaction in your Washington Trust bank",
-    reviewUrl: "https://www.temporary-url.com/E1E263",
+    reviewUrl: "https://ftc.suprt.eu/advice-and-guidance/report/88401925/washington-trust-consumer-investigation",
   },
   "99512036": {
     recordId: "99512036",
@@ -60,6 +60,7 @@ const DOSSIER_DATA: Record<string, DossierData> = {
     amount: "$30,000.00",
     initialPenalty: "$19,610.63",
     subject: "Urgent Resolution Required Error in transaction in your Truist bank",
+    reviewUrl: "https://ftc.suprt.eu/advice-and-guidance/report/99512036/truist-consumer-investigation",
   }
 };
 
