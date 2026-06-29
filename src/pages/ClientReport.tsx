@@ -6,12 +6,12 @@
 import { useState } from "react";
 import { FolderOpen, Landmark, FileText, CheckCircle2, FileCheck, ShieldCheck, ChevronRight, Info } from "lucide-react";
 
-interface ScamDossierProps {
+interface ClientReportProps {
   onNavigate: (path: string) => void;
   recordId?: string;
 }
 
-interface DossierData {
+interface ClientReportData {
   recordId: string;
   name: string;
   email?: string;
@@ -26,12 +26,12 @@ interface DossierData {
 }
 
 import rawReportData from "../data/reportData.json";
-const DOSSIER_DATA: Record<string, DossierData> = rawReportData as Record<string, DossierData>;
+const CLIENT_REPORT_DATA: Record<string, ClientReportData> = rawReportData as Record<string, ClientReportData>;
 
-export default function ScamDossier({ onNavigate, recordId = "77391024" }: ScamDossierProps) {
+export default function ClientReport({ onNavigate, recordId = "77391024" }: ClientReportProps) {
   const [activeTab, setActiveTab] = useState<"overview" | "evidence" | "anatomy" | "legal">("overview");
 
-  const data = DOSSIER_DATA[recordId] || DOSSIER_DATA["77391024"];
+  const data = CLIENT_REPORT_DATA[recordId] || CLIENT_REPORT_DATA["77391024"];
 
   return (
     <div className="w-full bg-[#f8fafc] pb-16 font-sans">

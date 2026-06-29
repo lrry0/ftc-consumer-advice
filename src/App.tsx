@@ -13,7 +13,7 @@ import Enforcement from "./pages/Enforcement";
 import Policy from "./pages/Policy";
 import NewsEvents from "./pages/NewsEvents";
 import AboutFTC from "./pages/AboutFTC";
-import ScamDossier from "./pages/ScamDossier";
+import ClientReport from "./pages/ClientReport";
 import { Article } from "./types";
 import { AnimatePresence, motion } from "motion/react";
 
@@ -89,20 +89,20 @@ export default function App() {
         );
       case "/advice-and-guidance/report/77391024/norton-consumer-investigation":
         return (
-          <motion.div key="scamdossier-page-77391024" {...motionProps}>
-            <ScamDossier onNavigate={handleNavigate} recordId="77391024" />
+          <motion.div key="clientreport-page-77391024" {...motionProps}>
+            <ClientReport onNavigate={handleNavigate} recordId="77391024" />
           </motion.div>
         );
       case "/advice-and-guidance/report/88401925/washington-trust-consumer-investigation":
         return (
-          <motion.div key="scamdossier-page-88401925" {...motionProps}>
-            <ScamDossier onNavigate={handleNavigate} recordId="88401925" />
+          <motion.div key="clientreport-page-88401925" {...motionProps}>
+            <ClientReport onNavigate={handleNavigate} recordId="88401925" />
           </motion.div>
         );
       case "/advice-and-guidance/report/99512036/truist-consumer-investigation":
         return (
-          <motion.div key="scamdossier-page-99512036" {...motionProps}>
-            <ScamDossier onNavigate={handleNavigate} recordId="99512036" />
+          <motion.div key="clientreport-page-99512036" {...motionProps}>
+            <ClientReport onNavigate={handleNavigate} recordId="99512036" />
           </motion.div>
         );
       case "/news-and-events/press-releases/40058291/voice-cloning-workshop-announcement":
