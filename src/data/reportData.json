@@ -1,4 +1,17 @@
 {
+  "27766020": {
+    "id": 8,
+    "recordId": "27766020",
+    "name": "James",
+    "email": "jmlarry960@gmail.com",
+    "bank": "Bofa",
+    "accountMasked": "XXXXXXXXX6578",
+    "accountEnding": "6578",
+    "amount": "2000",
+    "initialPenalty": "$19,610.63",
+    "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
+    "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/27766020/bofa-consumer-investigation"
+  },
   "28832223": {
     "id": 3,
     "recordId": "28832223",
