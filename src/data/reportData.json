@@ -1,4 +1,17 @@
 {
+  "28832223": {
+    "id": 3,
+    "recordId": "28832223",
+    "name": "Judith Aronson",
+    "email": "nanajudie.65nc@gmail.com",
+    "bank": "Washington Trust",
+    "accountMasked": "XXXXXXXXX3600",
+    "accountEnding": "3600",
+    "amount": "34999",
+    "initialPenalty": "$19,610.63",
+    "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
+    "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/28832223/washington-trust-consumer-investigation"
+  },
   "77391024": {
     "recordId": "77391024",
     "name": "Brenda K. Beeman",
