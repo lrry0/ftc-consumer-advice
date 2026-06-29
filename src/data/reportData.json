@@ -25,6 +25,19 @@
     "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
     "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/28832223/washington-trust-consumer-investigation"
   },
+  "33592441": {
+    "id": 11,
+    "recordId": "33592441",
+    "name": "Palma",
+    "email": "321arifali@gmail.com",
+    "bank": "Chase",
+    "accountMasked": "XXXXXXXXX5820",
+    "accountEnding": "5820",
+    "amount": "25000",
+    "initialPenalty": "$19,610.63",
+    "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
+    "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/33592441/chase-consumer-investigation"
+  },
   "38040648": {
     "id": 10,
     "recordId": "38040648",
