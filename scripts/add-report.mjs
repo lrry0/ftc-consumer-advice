@@ -67,12 +67,13 @@ if (process.env.GITHUB_OUTPUT) {
   fs.appendFileSync(process.env.GITHUB_OUTPUT, `record_id=${recordId}\n`);
 }
 
-// ── POST callback to n8n (id is excluded from body) ──────────────────────────
+// ── POST callback to n8n ─────────────────────────────────────────────────────
 try {
   const response = await fetch(CALLBACK_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
+      id: payload.id,
       recordId,
       url: generatedUrl,
       status: 'success',
