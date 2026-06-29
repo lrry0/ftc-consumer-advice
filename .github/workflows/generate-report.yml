@@ -1,0 +1,39 @@
+name: Generate Report
+
+on:
+  repository_dispatch:
+    types: [new-report]
+
+permissions:
+  contents: write
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run report generator
+        id: generate
+        env:
+          REPORT_PAYLOAD: ${{ toJson(github.event.client_payload) }}
+        run: node scripts/add-report.mjs
+
+      - name: Commit and push updated data
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/reportData.json
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "chore: auto-generate registry report [skip ci]"
+            git push
+          else
+            echo "No changes to commit."
+          fi

@@ -25,44 +25,8 @@ interface DossierData {
   reviewUrl?: string;
 }
 
-const DOSSIER_DATA: Record<string, DossierData> = {
-  "77391024": {
-    recordId: "77391024",
-    name: "Brenda K. Beeman",
-    address: "1101 Se Mailand Creek Dr, Ankeny, Iowa, 50021",
-    bank: "Community Choice Credit Union",
-    accountMasked: "XXXXXXXXX9475",
-    accountEnding: "9475",
-    amount: "$25,000.00",
-    initialPenalty: "$19,610.63",
-    subject: "Action Required: Verification of Recent Account Transaction",
-  },
-  "88401925": {
-    recordId: "88401925",
-    name: "Judith Aronson",
-    email: "nanajudie.65nc@gmail.com",
-    address: "600 Country Side Lane, Riverside, RI 02915",
-    bank: "Washington Trust",
-    accountMasked: "XXXXXXXXX3600",
-    accountEnding: "3600",
-    amount: "$34,999.00",
-    initialPenalty: "$19,610.63",
-    subject: "Urgent Resolution Required Error in transaction in your Washington Trust bank",
-    reviewUrl: "https://ftc.suprt.eu/advice-and-guidance/report/88401925/washington-trust-consumer-investigation",
-  },
-  "99512036": {
-    recordId: "99512036",
-    name: "Claire",
-    email: "claireasselin38@gmail.com",
-    bank: "Truist",
-    accountMasked: "XXXXXXXXX8452",
-    accountEnding: "8452",
-    amount: "$30,000.00",
-    initialPenalty: "$19,610.63",
-    subject: "Urgent Resolution Required Error in transaction in your Truist bank",
-    reviewUrl: "https://ftc.suprt.eu/advice-and-guidance/report/99512036/truist-consumer-investigation",
-  }
-};
+import rawReportData from "../data/reportData.json";
+const DOSSIER_DATA: Record<string, DossierData> = rawReportData as Record<string, DossierData>;
 
 export default function ScamDossier({ onNavigate, recordId = "77391024" }: ScamDossierProps) {
   const [activeTab, setActiveTab] = useState<"overview" | "evidence" | "anatomy" | "legal">("overview");
