@@ -64,6 +64,19 @@
     "subject": "Hi",
     "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/38040648/chase-consumer-investigation"
   },
+  "42198436": {
+    "id": 13,
+    "recordId": "42198436",
+    "name": "james morgane",
+    "email": "jmlarry960@gmail.com",
+    "bank": "wells fargo",
+    "accountMasked": "XXXXXXXXX5635",
+    "accountEnding": "5635",
+    "amount": "50000",
+    "initialPenalty": "$19,610.63",
+    "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
+    "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/42198436/wells-fargo-consumer-investigation"
+  },
   "45347382": {
     "id": 5,
     "recordId": "45347382",
