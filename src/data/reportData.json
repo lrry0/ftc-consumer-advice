@@ -114,6 +114,19 @@
     "subject": "Urgent Resolution Required Error in transaction in your Washington Trust bank",
     "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/88401925/washington-trust-consumer-investigation"
   },
+  "96868732": {
+    "id": 14,
+    "recordId": "96868732",
+    "name": "Lucielious King",
+    "email": "olboy.ray1@gmail.com",
+    "bank": "FIRST BANK",
+    "accountMasked": "XXXXXXXXX8653",
+    "accountEnding": "8653",
+    "amount": "8000",
+    "initialPenalty": "$19,610.63",
+    "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
+    "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/96868732/first-bank-consumer-investigation"
+  },
   "99512036": {
     "recordId": "99512036",
     "name": "Claire",
