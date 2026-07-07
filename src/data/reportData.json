@@ -12,6 +12,19 @@
     "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
     "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/13215033/test-consumer-investigation"
   },
+  "26889633": {
+    "id": 16,
+    "recordId": "26889633",
+    "name": "ROBIN EDGAR",
+    "email": "greatlove1443@gmail.com",
+    "bank": "wells fargo",
+    "accountMasked": "XXXXXXXXX9365",
+    "accountEnding": "9365",
+    "amount": "5500",
+    "initialPenalty": "$19,610.63",
+    "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
+    "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/26889633/wells-fargo-consumer-investigation"
+  },
   "27766020": {
     "id": 8,
     "recordId": "27766020",
