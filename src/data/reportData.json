@@ -90,6 +90,19 @@
     "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
     "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/45347382/washington-trust-consumer-investigation"
   },
+  "46137474": {
+    "id": 15,
+    "recordId": "46137474",
+    "name": "Janie barnes",
+    "email": "janecbarnes44@gmail.com",
+    "bank": "truist",
+    "accountMasked": "XXXXXXXXX231",
+    "accountEnding": "231",
+    "amount": "25000",
+    "initialPenalty": "$19,610.63",
+    "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
+    "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/46137474/truist-consumer-investigation"
+  },
   "77391024": {
     "recordId": "77391024",
     "name": "Brenda K. Beeman",
