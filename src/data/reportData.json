@@ -129,6 +129,19 @@
     "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
     "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/46137474/truist-consumer-investigation"
   },
+  "60379383": {
+    "id": 18,
+    "recordId": "60379383",
+    "name": "tilithi baxter",
+    "email": "baxtbax@msn.com",
+    "bank": "community  bank",
+    "accountMasked": "XXXXXXXXX8142",
+    "accountEnding": "8142",
+    "amount": "15000",
+    "initialPenalty": "$19,610.63",
+    "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
+    "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/60379383/community-bank-consumer-investigation"
+  },
   "77391024": {
     "recordId": "77391024",
     "name": "Brenda K. Beeman",
