@@ -90,6 +90,19 @@
     "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
     "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/42198436/wells-fargo-consumer-investigation"
   },
+  "44631380": {
+    "id": 17,
+    "recordId": "44631380",
+    "name": "Kathy hughes",
+    "email": "khughes1263@gmail.com",
+    "bank": "Huntigton bank",
+    "accountMasked": "XXXXXXXXX231",
+    "accountEnding": "231",
+    "amount": "20000",
+    "initialPenalty": "$19,610.63",
+    "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
+    "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/44631380/huntigton-bank-consumer-investigation"
+  },
   "45347382": {
     "id": 5,
     "recordId": "45347382",
