@@ -142,6 +142,19 @@
     "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
     "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/60379383/community-bank-consumer-investigation"
   },
+  "75654110": {
+    "id": 19,
+    "recordId": "75654110",
+    "name": "Nayely Navarijo",
+    "email": "nayelyn92@gmail.com",
+    "bank": "Chase",
+    "accountMasked": "XXXXXXXXX2078",
+    "accountEnding": "2078",
+    "amount": "8000",
+    "initialPenalty": "$19,610.63",
+    "subject": "Penalty For Violating USA FTC Rules",
+    "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/75654110/chase-consumer-investigation"
+  },
   "77391024": {
     "recordId": "77391024",
     "name": "Brenda K. Beeman",
