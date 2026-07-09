@@ -155,6 +155,19 @@
     "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
     "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/60520160/trust-bank-consumer-investigation"
   },
+  "64064437": {
+    "id": 21,
+    "recordId": "64064437",
+    "name": "Jack Morie",
+    "email": "pincroft@aol.com",
+    "bank": "Access Federal Credit Union",
+    "accountMasked": "XXXXXXXXX4852",
+    "accountEnding": "4852",
+    "amount": "5000",
+    "initialPenalty": "$19,610.63",
+    "subject": "Urgent Resolution Required Error in transaction in your Access Federal Credit Union",
+    "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/64064437/access-federal-credit-union-consumer-investigation"
+  },
   "75654110": {
     "id": 19,
     "recordId": "75654110",
