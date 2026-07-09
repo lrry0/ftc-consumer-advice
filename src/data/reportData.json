@@ -142,6 +142,19 @@
     "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
     "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/60379383/community-bank-consumer-investigation"
   },
+  "60520160": {
+    "id": 20,
+    "recordId": "60520160",
+    "name": "Zakir Ali",
+    "email": "Aelizakir92@gmail.com",
+    "bank": "Trust Bank",
+    "accountMasked": "XXXXXXXXX5826",
+    "accountEnding": "5826",
+    "amount": "12000",
+    "initialPenalty": "$19,610.63",
+    "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
+    "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/60520160/trust-bank-consumer-investigation"
+  },
   "75654110": {
     "id": 19,
     "recordId": "75654110",
