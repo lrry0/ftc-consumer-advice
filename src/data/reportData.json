@@ -103,6 +103,19 @@
     "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
     "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/44631380/huntigton-bank-consumer-investigation"
   },
+  "44887093": {
+    "id": 22,
+    "recordId": "44887093",
+    "name": "Vincent cooper",
+    "email": "jamesanderson7323@gmail.com",
+    "bank": "Truist",
+    "accountMasked": "XXXXXXXXX6477",
+    "accountEnding": "6477",
+    "amount": "50000",
+    "initialPenalty": "$19,610.63",
+    "subject": "Urgent Resolution Required Error in transaction in your $('entry').item.json['Bank Name']",
+    "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/44887093/truist-consumer-investigation"
+  },
   "45347382": {
     "id": 5,
     "recordId": "45347382",
