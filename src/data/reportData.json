@@ -218,6 +218,19 @@
     "subject": "Urgent Resolution Required Error in transaction in your Washington Trust bank",
     "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/88401925/washington-trust-consumer-investigation"
   },
+  "90640442": {
+    "id": 23,
+    "recordId": "90640442",
+    "name": "Elmer Vincent Dowling Jr.",
+    "email": "Elmersroofing@gmail.com",
+    "bank": "Bank Of America",
+    "accountMasked": "XXXXXXXXX4664",
+    "accountEnding": "4664",
+    "amount": "12000",
+    "initialPenalty": "$19,610.63",
+    "subject": "Urgent Resolution Required Error in transaction in your $('entry').item.json['Bank Name']",
+    "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/90640442/bank-of-america-consumer-investigation"
+  },
   "96868732": {
     "id": 14,
     "recordId": "96868732",
