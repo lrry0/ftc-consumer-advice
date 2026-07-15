@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const CALLBACK_URL = 'https://n8n.alphabusinessdesigns.co.uk/webhook/477405ad-5d41-44f4-bec5-8e34c5451f84/report-callback';
+const DEFAULT_CALLBACK_URL = 'https://n8n.alphabusinessdesigns.co.uk/webhook/477405ad-5d41-44f4-bec5-8e34c5451f84/report-callback';
 const dataFilePath = path.join(__dirname, '../src/data/reportData.json');
 
 // ── Read payload ──────────────────────────────────────────────────────────────
@@ -61,32 +61,39 @@ fs.writeFileSync(dataFilePath, JSON.stringify(reportData, null, 2));
 console.log(`✅ Report added: ${recordId}`);
 console.log(`🔗 URL: ${generatedUrl}`);
 
-// ── Write URL to GitHub Actions output ───────────────────────────────────────
+// ── Write URL and Payload ID to GitHub Actions output ──────────────────────
 if (process.env.GITHUB_OUTPUT) {
   fs.appendFileSync(process.env.GITHUB_OUTPUT, `generated_url=${generatedUrl}\n`);
   fs.appendFileSync(process.env.GITHUB_OUTPUT, `record_id=${recordId}\n`);
+  if (payload.id) {
+    fs.appendFileSync(process.env.GITHUB_OUTPUT, `payload_id=${payload.id}\n`);
+  }
 }
 
-// ── POST callback to n8n ─────────────────────────────────────────────────────
-try {
-  const headers = { 'Content-Type': 'application/json' };
-  const callbackToken = process.env.N8N_CALLBACK_TOKEN;
-  if (callbackToken) {
-    headers['Authorization'] = `Bearer ${callbackToken}`;
-  }
+// ── POST callback to n8n (Only if not running in GitHub Actions) ──────────────
+if (process.env.GITHUB_ACTIONS === 'true') {
+  console.log('⏭️ Running in GitHub Actions. Callback will be handled by the workflow step.');
+} else {
+  try {
+    const headers = { 'Content-Type': 'application/json' };
+    const callbackToken = process.env.N8N_CALLBACK_TOKEN;
+    if (callbackToken) {
+      headers['Authorization'] = `Bearer ${callbackToken}`;
+    }
 
-  const response = await fetch(CALLBACK_URL, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({
-      id: payload.id,
-      recordId,
-      url: generatedUrl,
-      status: 'success',
-    }),
-  });
-  console.log(`📬 Callback sent → ${response.status}`);
-} catch (err) {
-  console.error('⚠️  Callback failed:', err.message);
-  // Don't exit — the file was already saved, failure here is non-fatal
+    const callbackUrl = payload.callbackUrl || DEFAULT_CALLBACK_URL;
+    const response = await fetch(callbackUrl, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        id: payload.id,
+        recordId,
+        url: generatedUrl,
+        status: 'success',
+      }),
+    });
+    console.log(`📬 Local callback sent → ${response.status}`);
+  } catch (err) {
+    console.error('⚠️  Local callback failed:', err.message);
+  }
 }

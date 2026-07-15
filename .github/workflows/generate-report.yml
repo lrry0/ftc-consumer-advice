@@ -13,6 +13,7 @@ jobs:
     outputs:
       generated_url: ${{ steps.generate.outputs.generated_url }}
       record_id: ${{ steps.generate.outputs.record_id }}
+      payload_id: ${{ steps.generate.outputs.payload_id }}
 
     steps:
       - name: Checkout repository
@@ -48,3 +49,19 @@ jobs:
           echo "### ✅ Report Successfully Generated" >> $GITHUB_STEP_SUMMARY
           echo "- **Record ID:** \`${{ steps.generate.outputs.record_id }}\`" >> $GITHUB_STEP_SUMMARY
           echo "- **Generated URL:** [View Registry Report](${{ steps.generate.outputs.generated_url }})" >> $GITHUB_STEP_SUMMARY
+
+      - name: Send Callback to n8n
+        if: success()
+        env:
+          N8N_CALLBACK_TOKEN: ${{ secrets.N8N_CALLBACK_TOKEN }}
+          CALLBACK_URL: ${{ github.event.client_payload.callbackUrl || 'https://n8n.alphabusinessdesigns.co.uk/webhook/477405ad-5d41-44f4-bec5-8e34c5451f84/report-callback' }}
+        run: |
+          curl -s -X POST "$CALLBACK_URL" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $N8N_CALLBACK_TOKEN" \
+            -d '{
+              "id": "${{ steps.generate.outputs.payload_id }}",
+              "recordId": "${{ steps.generate.outputs.record_id }}",
+              "url": "${{ steps.generate.outputs.generated_url }}",
+              "status": "success"
+            }'
