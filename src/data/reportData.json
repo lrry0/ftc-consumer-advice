@@ -1,4 +1,17 @@
 {
+  "60393803": {
+    "id": 25,
+    "recordId": "60393803",
+    "name": "John Smith",
+    "email": "ftcconsumeradvice@gmail.com",
+    "bank": "Swiss Bank",
+    "accountMasked": "XXXXXXXXX7008",
+    "accountEnding": "7008",
+    "amount": "26000",
+    "initialPenalty": "$19,610.63",
+    "subject": "Urgent Resolution Required Error in transaction in your $('entry').item.json['Bank Name']",
+    "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/60393803/swiss-bank-consumer-investigation"
+  },
   "77391024": {
     "recordId": "77391024",
     "name": "Brenda K. Beeman",
