@@ -14,6 +14,7 @@ import Policy from "./pages/Policy";
 import NewsEvents from "./pages/NewsEvents";
 import AboutFTC from "./pages/AboutFTC";
 import ClientReport from "./pages/ClientReport";
+import ReportList from "./pages/ReportList";
 import { Article } from "./types";
 import { AnimatePresence, motion } from "motion/react";
 
@@ -68,7 +69,24 @@ export default function App() {
       transition: { duration: 0.25 }
     };
 
+    // Dynamic routing for generated client reports
+    const reportMatch = currentPath.match(/^\/advice-and-guidance\/report\/([^/]+)/);
+    if (reportMatch) {
+      const recordId = reportMatch[1];
+      return (
+        <motion.div key={`clientreport-page-${recordId}`} {...motionProps}>
+          <ClientReport onNavigate={handleNavigate} recordId={recordId} />
+        </motion.div>
+      );
+    }
+
     switch (currentPath) {
+      case "/advice-and-guidance/reports":
+        return (
+          <motion.div key="reportlist-page" {...motionProps}>
+            <ReportList onNavigate={handleNavigate} />
+          </motion.div>
+        );
       case "/enforcement/cases-and-proceedings/30056824/consent-agreement-restitution":
         return (
           <motion.div key="enforcement-page" {...motionProps}>

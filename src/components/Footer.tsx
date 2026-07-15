@@ -85,6 +85,13 @@ export default function Footer({ onNavigate }: FooterProps) {
           
           {/* Administrative Links */}
           <div className="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-2 text-xs text-[#a5b4fc]/70 font-semibold">
+            <span 
+              onClick={() => onNavigate("/advice-and-guidance/reports")}
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              Registry Records
+            </span>
+            <span className="text-[#2c4e7a]/60 select-none">|</span>
             <a 
               href="https://www.ftc.gov" 
               target="_blank" 
