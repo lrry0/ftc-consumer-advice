@@ -1,0 +1,42 @@
+name: Delete Report
+
+on:
+  workflow_dispatch:
+    inputs:
+      record_id:
+        description: 'Record ID to delete (or enter "all" to clear all dynamic records)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  delete-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run delete script
+        env:
+          RECORD_ID: ${{ inputs.record_id }}
+        run: node scripts/delete-report.mjs
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/reportData.json
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "chore: delete registry report(s)"
+            git push
+          else
+            echo "No changes to commit."
+          fi

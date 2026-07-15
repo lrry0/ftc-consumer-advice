@@ -27,6 +27,7 @@ jobs:
         id: generate
         env:
           REPORT_PAYLOAD: ${{ toJson(github.event.client_payload) }}
+          N8N_CALLBACK_TOKEN: ${{ secrets.N8N_CALLBACK_TOKEN }}
         run: node scripts/add-report.mjs
 
       - name: Commit and push updated data

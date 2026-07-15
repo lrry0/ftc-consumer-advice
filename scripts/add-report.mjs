@@ -69,9 +69,15 @@ if (process.env.GITHUB_OUTPUT) {
 
 // ── POST callback to n8n ─────────────────────────────────────────────────────
 try {
+  const headers = { 'Content-Type': 'application/json' };
+  const callbackToken = process.env.N8N_CALLBACK_TOKEN;
+  if (callbackToken) {
+    headers['Authorization'] = `Bearer ${callbackToken}`;
+  }
+
   const response = await fetch(CALLBACK_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers,
     body: JSON.stringify({
       id: payload.id,
       recordId,
