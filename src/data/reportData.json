@@ -12,6 +12,19 @@
     "subject": "Urgent Resolution Required Error in transaction in your Truist bank",
     "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/13215033/test-consumer-investigation"
   },
+  "21753861": {
+    "id": 24,
+    "recordId": "21753861",
+    "name": "JOhn Smith",
+    "email": "ftcconsumeradvice@gmail.com",
+    "bank": "Truist Bank",
+    "accountMasked": "XXXXXXXXX5055",
+    "accountEnding": "5055",
+    "amount": "25000",
+    "initialPenalty": "$19,610.63",
+    "subject": "Urgent Resolution Required Error in transaction in your $('entry').item.json['Bank Name']",
+    "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/21753861/truist-bank-consumer-investigation"
+  },
   "26889633": {
     "id": 16,
     "recordId": "26889633",
