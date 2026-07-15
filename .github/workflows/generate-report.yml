@@ -10,6 +10,9 @@ permissions:
 jobs:
   generate-report:
     runs-on: ubuntu-latest
+    outputs:
+      generated_url: ${{ steps.generate.outputs.generated_url }}
+      record_id: ${{ steps.generate.outputs.record_id }}
 
     steps:
       - name: Checkout repository
@@ -32,8 +35,15 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add src/data/reportData.json
           if ! git diff-index --quiet HEAD; then
-            git commit -m "chore: auto-generate registry report [skip ci]"
+            git commit -m "chore: auto-generate registry report"
             git push
           else
             echo "No changes to commit."
           fi
+
+      - name: Write Job Summary
+        if: success()
+        run: |
+          echo "### ✅ Report Successfully Generated" >> $GITHUB_STEP_SUMMARY
+          echo "- **Record ID:** \`${{ steps.generate.outputs.record_id }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Generated URL:** [View Registry Report](${{ steps.generate.outputs.generated_url }})" >> $GITHUB_STEP_SUMMARY
