@@ -31,9 +31,14 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Fetch reports database from Vercel KV
-    const kvResponse = await fetch(`${kvUrl}/get/reports_db`, {
-      headers: { Authorization: `Bearer ${kvToken}` }
+    // Fetch reports database from Vercel KV using standard POST / command
+    const kvResponse = await fetch(kvUrl, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${kvToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(['GET', 'reports_db'])
     });
 
     if (!kvResponse.ok) {

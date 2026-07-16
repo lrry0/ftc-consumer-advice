@@ -69,22 +69,34 @@ export default async function handler(req, res) {
   }
 
   try {
-    // 1. Fetch current database from Vercel KV
-    const getRes = await fetch(`${kvUrl}/get/reports_db`, {
-      headers: { Authorization: `Bearer ${kvToken}` }
+    // 1. Fetch current database from Vercel KV using standard POST / command
+    const getRes = await fetch(kvUrl, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${kvToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(['GET', 'reports_db'])
     });
+
+    if (!getRes.ok) {
+      throw new Error(`Failed to GET from KV: ${await getRes.text()}`);
+    }
+
     const getData = await getRes.json();
     const reportData = getData.result ? JSON.parse(getData.result) : {};
 
     // 2. Add new entry
     reportData[recordId] = newEntry;
 
-    // 3. Save updated database back to KV (using Redis SET command)
-    // We send a POST request with the JSON payload to the KV REST API
-    const setRes = await fetch(`${kvUrl}/set/reports_db`, {
+    // 3. Save updated database back to KV using standard POST / command
+    const setRes = await fetch(kvUrl, {
       method: 'POST',
-      headers: { Authorization: `Bearer ${kvToken}` },
-      body: JSON.stringify(reportData)
+      headers: {
+        Authorization: `Bearer ${kvToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(['SET', 'reports_db', JSON.stringify(reportData)])
     });
 
     if (!setRes.ok) {
