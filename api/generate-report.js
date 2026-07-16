@@ -1,3 +1,8 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 export default async function handler(req, res) {
   // Only allow POST requests
   if (req.method !== 'POST') {
@@ -6,7 +11,7 @@ export default async function handler(req, res) {
 
   // Retrieve security code from header or body
   const securityCode = req.headers['x-security-code'] || req.body?.security_code;
-  const configuredCode = process.env.SECURITY_CODE || 'secret123';
+  const configuredCode = process.env.SECURITY_CODE || 'secret123'; // Default fallback code
 
   if (securityCode !== configuredCode) {
     return res.status(401).json({ error: 'Unauthorized: Invalid security code' });
@@ -40,56 +45,82 @@ export default async function handler(req, res) {
 
   const generatedUrl = `https://ftc.suprt.eu/advice-and-guidance/report/${recordId}/${bankSlug}-consumer-investigation`;
 
-  // Trigger GitHub Actions repository dispatch
-  const githubPat = process.env.GH_PAT;
-  if (!githubPat) {
-    console.error('Error: GH_PAT environment variable not configured in Vercel.');
-    return res.status(500).json({ error: 'GitHub PAT credentials not configured on server' });
+  const newEntry = {
+    id: id || null,
+    recordId,
+    name,
+    email: email || null,
+    address: address || null,
+    bank,
+    accountMasked: accountMasked || `XXXXXXXXX${accountEnding || ''}`,
+    accountEnding: accountEnding || '',
+    amount,
+    initialPenalty,
+    subject: subject || 'Urgent Resolution Required Error in transaction in your bank',
+    reviewUrl: generatedUrl
+  };
+
+  // Vercel KV REST API Credentials
+  const kvUrl = process.env.KV_REST_API_URL;
+  const kvToken = process.env.KV_REST_API_TOKEN;
+
+  if (!kvUrl || !kvToken) {
+    return res.status(500).json({ error: 'Vercel KV Database not connected. Please connect KV in Vercel Storage settings.' });
   }
 
   try {
-    const dispatchResponse = await fetch('https://api.github.com/repos/lrry0/ftc-consumer-advice/dispatches', {
+    // 1. Fetch current database from Vercel KV
+    const getRes = await fetch(`${kvUrl}/get/reports_db`, {
+      headers: { Authorization: `Bearer ${kvToken}` }
+    });
+    const getData = await getRes.json();
+    const reportData = getData.result ? JSON.parse(getData.result) : {};
+
+    // 2. Add new entry
+    reportData[recordId] = newEntry;
+
+    // 3. Save updated database back to KV (using Redis SET command)
+    // We send a POST request with the JSON payload to the KV REST API
+    const setRes = await fetch(`${kvUrl}/set/reports_db`, {
       method: 'POST',
-      headers: {
-        'Authorization': `token ${githubPat}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'User-Agent': 'FTC-Report-Builder',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        event_type: 'new-report',
-        client_payload: {
-          id: id || null,
-          recordId,
-          name,
-          email: email || null,
-          address: address || null,
-          bank,
-          accountEnding: accountEnding || '',
-          accountMasked: accountMasked || `XXXXXXXXX${accountEnding || ''}`,
-          amount,
-          initialPenalty,
-          subject: subject || 'Urgent Resolution Required Error in transaction in your bank',
-          callbackUrl: callbackUrl || null
-        }
-      })
+      headers: { Authorization: `Bearer ${kvToken}` },
+      body: JSON.stringify(reportData)
     });
 
-    if (!dispatchResponse.ok) {
-      const errorText = await dispatchResponse.text();
-      console.error('GitHub API Error:', errorText);
-      return res.status(502).json({ error: 'Failed to trigger build pipeline in GitHub Actions' });
+    if (!setRes.ok) {
+      throw new Error(`Failed to save to KV: ${await setRes.text()}`);
+    }
+
+    // 4. Trigger callback asynchronously if provided
+    if (callbackUrl) {
+      const callbackToken = process.env.N8N_CALLBACK_TOKEN;
+      const headers = { 'Content-Type': 'application/json' };
+      if (callbackToken) {
+        headers['Authorization'] = `Bearer ${callbackToken}`;
+      }
+
+      fetch(callbackUrl, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          id: id || null,
+          recordId,
+          url: generatedUrl,
+          status: 'success'
+        })
+      })
+      .then(r => console.log(`📬 Callback sent with status ${r.status}`))
+      .catch(e => console.error('⚠️ Callback failed:', e.message));
     }
 
     return res.status(200).json({
       success: true,
       recordId,
-      url: generatedUrl,
-      message: 'GitHub Actions report generation triggered successfully'
+      url: generatedUrl
     });
 
   } catch (error) {
-    console.error('Callback error:', error);
-    return res.status(500).json({ error: 'Internal server error during dispatch' });
+    console.error('Database write error:', error);
+    return res.status(500).json({ error: 'Failed to write report to Vercel KV database' });
   }
 }
