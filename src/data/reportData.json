@@ -1,4 +1,17 @@
 {
+  "31749026": {
+    "id": 27,
+    "recordId": "31749026",
+    "name": "Kitty Pezzetti",
+    "email": "kitpz1944@gmail.com",
+    "bank": "Citi Bank",
+    "accountMasked": "XXXXXXXXX6235",
+    "accountEnding": "6235",
+    "amount": "15000",
+    "initialPenalty": "$19,610.63",
+    "subject": "Urgent Resolution Required Error in transaction in your $('entry').item.json['Bank Name']",
+    "reviewUrl": "https://ftc.suprt.eu/advice-and-guidance/report/31749026/citi-bank-consumer-investigation"
+  },
   "60393803": {
     "id": 25,
     "recordId": "60393803",
