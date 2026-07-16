@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FolderOpen, Search, ChevronRight, Building, ShieldCheck } from "lucide-react";
 import rawReportData from "../data/reportData.json";
 
@@ -21,16 +21,28 @@ interface ClientReportData {
   reviewUrl?: string;
 }
 
-const CLIENT_REPORT_DATA = rawReportData as Record<string, ClientReportData>;
-
 interface ReportListProps {
   onNavigate: (path: string) => void;
 }
 
 export default function ReportList({ onNavigate }: ReportListProps) {
   const [searchTerm, setSearchTerm] = useState("");
+  const [reportData, setReportData] = useState<Record<string, ClientReportData>>(
+    rawReportData as Record<string, ClientReportData>
+  );
 
-  const reports = Object.values(CLIENT_REPORT_DATA).reverse(); // Show newest reports first
+  useEffect(() => {
+    fetch("/api/reports")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && typeof data === "object") {
+          setReportData(data);
+        }
+      })
+      .catch((err) => console.error("Failed to load reports listing:", err));
+  }, []);
+
+  const reports = (Object.values(reportData) as ClientReportData[]).reverse(); // Show newest reports first
 
   const filteredReports = reports.filter((report) => {
     const query = searchTerm.toLowerCase();

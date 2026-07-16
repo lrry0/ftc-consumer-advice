@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FolderOpen, Landmark, FileText, CheckCircle2, FileCheck, ShieldCheck, ChevronRight, Info } from "lucide-react";
 
 interface ClientReportProps {
@@ -26,12 +26,25 @@ interface ClientReportData {
 }
 
 import rawReportData from "../data/reportData.json";
-const CLIENT_REPORT_DATA: Record<string, ClientReportData> = rawReportData as Record<string, ClientReportData>;
 
 export default function ClientReport({ onNavigate, recordId = "77391024" }: ClientReportProps) {
   const [activeTab, setActiveTab] = useState<"overview" | "evidence" | "anatomy" | "legal">("overview");
+  const [reportData, setReportData] = useState<Record<string, ClientReportData>>(
+    rawReportData as Record<string, ClientReportData>
+  );
 
-  const data = CLIENT_REPORT_DATA[recordId] || CLIENT_REPORT_DATA["77391024"];
+  useEffect(() => {
+    fetch("/api/reports")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && typeof data === "object") {
+          setReportData(data);
+        }
+      })
+      .catch((err) => console.error("Failed to load reports dynamically:", err));
+  }, []);
+
+  const data = reportData[recordId] || reportData["77391024"];
 
   return (
     <div className="w-full bg-[#f8fafc] pb-16 font-sans">
